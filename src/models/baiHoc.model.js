@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     ThuTu: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     TenBaiHoc: {
       type: DataTypes.STRING,
@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     Video: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     HinhAnh: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   }, {
     tableName: 'baiHocs',

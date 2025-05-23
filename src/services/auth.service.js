@@ -26,7 +26,6 @@ class AuthService {
 
         const defaultRole = await this.roleDAL.findByRoleName('Admin');
 
-
         if (!defaultRole) {
             throw new Error('Role này hiện chưa tồn tại!!');
         }

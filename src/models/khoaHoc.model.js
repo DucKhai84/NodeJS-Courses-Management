@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {
-    tableName: 'KhoaHoc',
+    tableName: 'khoaHocs',
     timestamps: false
   });
 
