@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const baiHocController = require('../controllers/baiHoc.controller');
-const apiResponse = require('../utils/apiResponse');    
+const BaiHocController = require('../controllers/baiHoc.controller');
+const BaiHocService = require('../services/baiHoc.service');
+const apiResponse = require('../utils/apiResponse');
+
+const { baiHocDAL } = require('../models');
+
+const baiHocService = new BaiHocService(baiHocDAL);
+const baiHocController = new BaiHocController(baiHocService);
 
 router.get('/lectures', (req, res) => baiHocController.getAll(req, res));
 router.get('/lectures/:id', (req, res) => baiHocController.getById(req, res));
@@ -16,6 +22,8 @@ router.get('/lectures/:id', (req, res) => baiHocController.getById(req, res));
 //     }
 // })
 router.post('/lectures', (req, res) => baiHocController.create(req, res));
+router.delete('/lectures/:id', (req, res) => baiHocController.delete(req, res));
+router.put('/lectures/:id', (req, res) => baiHocController.update(req, res));
 
 
 module.exports = router;   

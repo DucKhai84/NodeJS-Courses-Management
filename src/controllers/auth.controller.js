@@ -1,20 +1,20 @@
-const AuthService = require('../services/auth.service');
+
 const apiResponse = require('../utils/apiResponse')
 
 class AuthController {
-  constructor() {
-    this.authService = new AuthService();
+  constructor(authService) {
+    this.authService = authService;
   }
   async register(req, res) {
     try {
 
-      const { Username, Password, HoTen, DiaChi, SDT } = req.body;
+      const { Username, Password, HoTen, SDT } = req.body;
 
-      if (!Username || !Password || !HoTen || !DiaChi || !SDT) {
+      if (!Username || !Password || !HoTen || !SDT) {
         return res.status(400).json(apiResponse.error('Thiếu thông tin người dùng !! '));
       }
 
-      const user = await this.authService.register({ Username, Password, HoTen, DiaChi, SDT });
+      const user = await this.authService.register({ Username, Password, HoTen, SDT });
       res.status(201).json({ message: 'Đăng ký thành công', user });
     } catch (err) {
       console.error(err);
@@ -37,4 +37,4 @@ class AuthController {
   }
 }
 
-module.exports = new AuthController();
+module.exports = AuthController;

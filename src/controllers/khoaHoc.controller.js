@@ -1,12 +1,12 @@
-const KhoaHocService = require('../services/khoaHoc.service');
-const apiResponse = require('../utils/apiResponse')
+const apiResponse = require('../utils/apiResponse');
+
 class KhoaHocController {
-    
-    constructor() {
-        this.khoaHocService = new KhoaHocService();
+
+    constructor(KhoaHocService) {
+        this.khoaHocService = KhoaHocService;
     }
 
-    async getAll(req, res){
+    async getAll(req, res) {
         try {
             const khoahocs = await this.khoaHocService.getAllKhoaHoc();
             res.json(khoahocs);
@@ -16,7 +16,7 @@ class KhoaHocController {
         }
     }
 
-    async getById(req, res){
+    async getById(req, res) {
         try {
             const khoahoc = await this.khoaHocService.getKhoaHocId(req.params.id);
             if (!khoahoc) {
@@ -29,7 +29,7 @@ class KhoaHocController {
         }
     }
 
-    async create(req, res){
+    async create(req, res) {
         try {
             const { TenKhoaHoc, MoTa, Gia } = req.body;
             const newKhoaHoc = await this.khoaHocService.createKhoaHoc({
@@ -44,7 +44,7 @@ class KhoaHocController {
         }
     }
 
-    async delete(req, res){
+    async delete(req, res) {
         try {
             const khoahoc = await this.khoaHocService.deleteKhoaHoc(req.params.id);
             if (!khoahoc) {
@@ -57,7 +57,7 @@ class KhoaHocController {
         }
     }
 
-    async update(req, res){
+    async update(req, res) {
         try {
             const khoahoc = await this.khoaHocService.updateKhoaHoc(req.params.id, req.body);
             if (!khoahoc) {
@@ -73,18 +73,18 @@ class KhoaHocController {
         try {
             const khoaHocId = req.params.khoaHocId;
             const khoaHoc = await this.khoaHocService.getKhoaHocWithUsers(khoaHocId);
-    
+
             if (!khoaHoc) {
                 return res.status(404).json(apiResponse.error('Khóa học không tồn tại'));
             }
-    
+
             res.status(200).json(khoaHoc);
         } catch (err) {
             console.error(err);
             res.status(500).json(apiResponse.error('Lỗi khi lấy ID khóa học'));
         }
     }
-    
+
 }
 
-module.exports = new KhoaHocController();
+module.exports = KhoaHocController;

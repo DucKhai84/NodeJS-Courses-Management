@@ -1,35 +1,35 @@
 const BaseRepository = require('./baseRepository');
-const { BaiHoc } = require('../models');
 
 class BaiHocDAL extends BaseRepository {
-    constructor() {
+    constructor(BaiHoc) {
         super(BaiHoc);
+        this.baiHoc = BaiHoc;
     }
 
     getAllBaiHoc() {
-        return BaiHoc.findAll();
+        return this.baiHoc.findAll();
     }
 
     getBaiHocId(baihocId) {
-        return BaiHoc.findByPk(baihocId);
+        return this.baiHoc.findByPk(baihocId);
     }
 
     createBaiHoc(baihoc) {
-        return BaiHoc.create(baihoc);
+        return this.baiHoc.create(baihoc);
     }
 
     deleteBaiHoc(baihocId) {
-        return BaiHoc.destroy({
+        return this.baiHoc.destroy({
             where: {
-                Id: baihocId
+                id: baihocId
             }
         });
     }
 
     updateBaiHoc(baihocId, baihoc) {
-        return BaiHoc.update(baihoc, {
+        return this.baiHoc.update(baihoc, {
             where: {
-                Id: baihocId
+                id: baihocId
             }
         });
     }

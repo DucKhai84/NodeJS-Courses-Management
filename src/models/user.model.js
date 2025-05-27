@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     DiaChi: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     SDT: {
       type: DataTypes.STRING,

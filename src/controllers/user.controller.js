@@ -1,10 +1,9 @@
-const UserService = require ('../services/user.service');
 const apiReponse = require('../utils/apiResponse')
 
 class UserController {
 
-  constructor() {
-    this.userService = new UserService();
+  constructor(UserService) {
+    this.userService = UserService;
   }
   async getAll(req, res) {
     try {
@@ -80,5 +79,5 @@ class UserController {
   }
 }
 
-module.exports = new UserController(); 
+module.exports = UserController;
 

@@ -1,25 +1,25 @@
 const BaseRepository = require('./baseRepository');
-const { User } = require('../models');
 
 class UserDAL extends BaseRepository {
-  constructor() {
+  constructor(User) {
     super(User);
+    this.user = User;
   }
 
   getAllUsers() {
-    return User.findAll();
+    return this.user.findAll();
   }
 
   getUserId(UserId) {
-    return User.findByPk(UserId);
+    return this.user.findByPk(UserId);
   }
 
   createUser(user) {
-    return User.create(user);
+    return this.user.create(user);
   }
 
   deleteUser(UserId) {
-    return User.destroy({
+    return this.user.destroy({
       where: {
         Id: UserId
       }
@@ -27,7 +27,7 @@ class UserDAL extends BaseRepository {
   }
 
   updateUser(UserId, user) {
-    return User.update(user, {
+    return this.user.update(user, {
       where: {
         Id: UserId
       }
@@ -35,7 +35,7 @@ class UserDAL extends BaseRepository {
   }
 
   findByUsername(username) {
-    return User.findOne({ where: { Username: username } });
+    return this.user.findOne({ where: { Username: username } });
   }
 }
 

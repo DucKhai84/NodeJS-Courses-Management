@@ -1,8 +1,7 @@
-const BaiHocDAL = require('../dal/baiHocDAL');
 
 class BaiHocService {
-    constructor() {
-        this.baiHocDAL = new BaiHocDAL();
+    constructor(BaiHocDAL) {
+        this.baiHocDAL = BaiHocDAL;
     }
 
     async getAllBaiHoc() {

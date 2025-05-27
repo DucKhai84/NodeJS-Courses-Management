@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { RoleClaim } = require('../models'); // import model roleclaim
+const { RoleClaim } = require('../models');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 module.exports = (requiredClaims = []) => {
@@ -12,14 +12,14 @@ module.exports = (requiredClaims = []) => {
 
     try {
       const decoded = jwt.verify(token, JWT_SECRET);
-      
-      
+
       req.user = {
         id: decoded.id,
         roleId: decoded.roleId,
       };
 
-      const roleId = decoded.roleId; 
+
+      const roleId = decoded.roleId;
       if (!roleId) return res.status(403).json({ message: 'Không tìm thấy role của user' });
 
       const roleClaims = await RoleClaim.findAll({ where: { RoleId: roleId } });

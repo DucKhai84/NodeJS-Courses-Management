@@ -1,24 +1,26 @@
-const { Role } = require('../models');
 
 class RoleDAL {
+  constructor(Role) {
+    this.role = Role;
+  }
   getAllRoles() {
-    return Role.findAll();
+    return this.role.findAll();
   }
 
   findByRoleName(roleName) {
-    return Role.findOne({ where: { Role: roleName } });
+    return this.role.findOne({ where: { Role: roleName } });
   }
 
   getRoleId(roleId) {
-    return Role.findByPk(roleId);
+    return this.role.findByPk(roleId);
   }
 
   createRole(role) {
-    return Role.create(role);
+    return this.role.create(role);
   }
 
   deleteRole(roleId) {
-    return Role.destroy({
+    return this.role.destroy({
       where: {
         Id: roleId
       }
@@ -26,7 +28,7 @@ class RoleDAL {
   }
 
   updateRole(roleId, role) {
-    return Role.update(role, {
+    return this.role.update(role, {
       where: {
         Id: roleId
       }

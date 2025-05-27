@@ -1,52 +1,53 @@
-const {KhoaHoc, User} = require('../models');
 const BaseRepository = require('./baseRepository');
 
-class KhoaHocDAL extends BaseRepository{
+class KhoaHocDAL extends BaseRepository {
 
-    constructor(){
+    constructor(KhoaHoc, User) {
         super(KhoaHoc);
+        this.khoaHoc = KhoaHoc;
+        this.user = User;
     }
 
-    getAllKhoaHoc(){
-        return KhoaHoc.findAll();
+    getAllKhoaHoc() {
+        return this.khoaHoc.findAll();
     }
 
-    getKhoaHocId(KhoaHocId){
-        return KhoaHoc.findByPk(KhoaHocId);
+    getKhoaHocId(KhoaHocId) {
+        return this.khoaHoc.findByPk(KhoaHocId);
     }
 
-    createKhoaHoc(khoahoc){
-        return KhoaHoc.create(khoahoc);
+    createKhoaHoc(khoahoc) {
+        return this.khoaHoc.create(khoahoc);
     }
 
-    deleteKhoaHoc(KhoaHocId){
-        return KhoaHoc.destroy({
-            where:{
+    deleteKhoaHoc(KhoaHocId) {
+        return this.khoaHoc.destroy({
+            where: {
                 Id: KhoaHocId
             }
         });
     }
 
-    updateKhoaHoc(KhoaHocId, khoahoc){
-        return KhoaHoc.update(khoahoc,{
-            where:{
+    updateKhoaHoc(KhoaHocId, khoahoc) {
+        return this.khoaHoc.update(khoahoc, {
+            where: {
                 Id: KhoaHocId
             }
         });
     }
     getKhoaHocWithUsers(khoaHocId) {
-        return KhoaHoc.findOne({
-          where: { id: khoaHocId },
-          attributes: ['id', 'TenKhoaHoc', 'NgonNgu'],
-          include: [
-            {
-              model: User,
-              through: {
-                attributes: ['BaiHocCuoiCung', 'createdAt']
-              },
-              attributes: ['id', 'Username', 'HoTen']
-            }
-          ]
+        return this.khoaHoc.findOne({
+            where: { id: khoaHocId },
+            attributes: ['id', 'TenKhoaHoc', 'NgonNgu'],
+            include: [
+                {
+                    model: this.user,
+                    through: {
+                        attributes: ['BaiHocCuoiCung', 'createdAt']
+                    },
+                    attributes: ['id', 'Username', 'HoTen']
+                }
+            ]
         });
     }
 }

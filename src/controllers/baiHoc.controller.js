@@ -1,9 +1,8 @@
-const BaiHocService = require('../services/baiHoc.service');
 const apiResponse = require('../utils/apiResponse')
 
 class BaiHocController {
-    constructor() {
-        this.baiHocService = new BaiHocService();
+    constructor(BaiHocService) {
+        this.baiHocService = BaiHocService;
     }
 
     async getAll(req, res) {
@@ -59,7 +58,7 @@ class BaiHocController {
 
     async update(req, res) {
         try {
-            const { KhoaHocId , TenBaiHoc, NoiDung, LoaiBaiHoc } = req.body;
+            const { KhoaHocId, TenBaiHoc, NoiDung, LoaiBaiHoc } = req.body;
             const baihoc = await this.baiHocService.updateBaiHoc(req.params.id, {
                 KhoaHocId,
                 TenBaiHoc,
@@ -77,4 +76,4 @@ class BaiHocController {
     }
 }
 
-module.exports = new BaiHocController();  
+module.exports = BaiHocController;  
