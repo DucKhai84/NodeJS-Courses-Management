@@ -1,0 +1,142 @@
+@import './site.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+#content_wrapper {
+    margin: 12px 0;
+}
+
+#topBar {
+    position: relative;
+    width: 100%;
+    height: var(--topBar-height);
+    background-color: var(--topBar-background-color);
+}
+
+.topBar_container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+
+}
+
+.topBar_lists {
+    width: 500px;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.topBar_lists-items {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 70px;
+}
+
+.topBar_items-img {
+    position: absolute;
+    padding: 10px 0;
+    height: 100%;
+    width: 80px;
+}
+
+.topBar_items-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: var(--text-size);
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.topBar_items-link:hover {
+    background-color: #f0f0f0;
+    color: var(--text-color);
+    transform: scale(1.05);
+}
+
+.topBar_lists {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.topBar_login {
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topBar_login-notification {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 20px 0;
+}
+
+.topBar_notication-icon {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+    padding: 8px 14px;
+    border-radius: 50%;
+    font-size: var(--text-size);
+}
+
+.topBar_login-avatar {
+    margin-left: 16px;
+    height: 100%;
+}
+
+.topBar_avatar-img {
+    padding: 16px 0;
+    height: 70px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+#slideBar {
+    height: var(--slideBar-height);
+    margin: 20px 0;
+}
+
+.slideBar_wrapper {
+    padding: 15px;
+    margin: 15px 0;
+}
+
+/* main */
+
+.content_main {
+    margin: 20px 0;
+}
+
+.main_add {
+    height: 120px;
+    max-width: 600px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+}
+
+.main_add-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.main_add-title {
+    font-size: var(--text-size);
+}
+
+.main_add-button {
+    font-size: var(--text-size);
+}
+
+.main_add-title {
+    display: flex;
+    justify-content: space-between;
+}
